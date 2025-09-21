@@ -1,0 +1,16 @@
+# application.yml
+spring:
+  application:
+    name: my-cloud-storage-application
+
+logging:
+  level:
+    com.myapp: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
