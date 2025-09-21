@@ -26,7 +26,7 @@ Tech Stack
 - Java 21+ 
 - Spring Boot 3+ 
 - Maven (multi-module build)
-- ReactJS (frontend UI – in a separate repo/module)
+- ReactJS (frontend UI)
 - PostgreSQL (default persistence, configurable)
 
 
