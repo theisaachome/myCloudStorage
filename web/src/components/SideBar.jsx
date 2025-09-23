@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaHome, FaUser, FaCog, FaBars } from "react-icons/fa";
+import { MenuItems } from "./SideBarData";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,15 +16,16 @@ const SideBar = () => {
         <button>
             <FaBars onClick={() => setIsOpen(!isOpen)} />
         </button>
-        <button>
-          <FaHome /> Home
-        </button>
-        <button>
-          <FaUser /> Profile
-        </button>
-        <button>
-          <FaCog /> Settings
-        </button>
+      <button>
+        <nav className="flex flex-col gap-6 mt-10">
+          {MenuItems.map((item, index) => (
+            <div key={index} className="flex items-center space-x-4">
+              <div className="text-xl">{item.icon}</div>
+              {isOpen && <span className="text-lg">{item.title}</span>}
+            </div>
+          ))}
+        </nav>
+      </button>
       </motion.div>
     </div>
   );
