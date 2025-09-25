@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = "com.mycloud.platform")
-@EntityScan(basePackages = "com.mycloud.platform.entity")
-@EnableJpaRepositories(basePackages = "com.mycloud.platform.repository")
+@EntityScan(basePackages = "com.mycloud.platform.domain.entity")
+@EnableJpaRepositories(basePackages = "com.mycloud.platform.domain.repository")
 @EnableJpaAuditing
 public class MyCloudPlatformApplication
 {

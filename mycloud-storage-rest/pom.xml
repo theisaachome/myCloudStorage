@@ -19,7 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>com.mycloud.platform</groupId>
-            <artifactId>cloud-storage-domain</artifactId>
+            <artifactId>mycloud-storage-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mycloud.platform</groupId>
+            <artifactId>mycloud-storage-api</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

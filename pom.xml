@@ -12,9 +12,10 @@
 
     <name>My Cloud File Service</name>
     <modules>
-        <module>cloud-storage-domain</module>
+        <module>mycloud-storage-domain</module>
         <module>mycloud-storage-rest</module>
         <module>mycloud-storage-application</module>
+        <module>mycloud-storage-api</module>
     </modules>
 
     <properties>
