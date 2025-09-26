@@ -1,10 +1,10 @@
-package com.mycloud.platform.mycloudstoragewebservice;
+package com.mycloud.platform.webservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MycloudStorageWebserviceApplicationTests {
+class MyCloudWebserviceApplicationTests {
 
     @Test
     void contextLoads() {
