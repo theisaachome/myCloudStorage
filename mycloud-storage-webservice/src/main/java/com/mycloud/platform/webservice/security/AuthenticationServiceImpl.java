@@ -9,6 +9,7 @@ import com.mycloud.platform.webservice.exception.AppApiException;
 import com.mycloud.platform.webservice.repository.RoleRepository;
 import com.mycloud.platform.webservice.repository.UserRepository;
 import com.mycloud.platform.webservice.security.jwt.JwtTokenProvider;
+import com.mycloud.platform.webservice.storage.StorageService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,8 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -28,15 +29,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final StorageService storageService;
 
     public AuthenticationServiceImpl(AuthenticationManager authenticationManager,
                                      UserRepository userRepository, RoleRepository roleRepository,
-                                     BCryptPasswordEncoder bCryptPasswordEncoder, JwtTokenProvider jwtTokenProvider) {
+                                     BCryptPasswordEncoder bCryptPasswordEncoder, JwtTokenProvider jwtTokenProvider, StorageService storageService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.storageService = storageService;
     }
     @Override
     public String register(RegisterRequest request){
@@ -54,9 +57,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setPassword(bCryptPasswordEncoder.encode(request.password()));
         user.setEmail(request.email());
         user.setRoles(userRoles);
-        //Todo create home-directory for newly registered user.
-
-        userRepository.save(user);
+        var savedUser=userRepository.save(user);
+        storageService.createUserHomeDirectories(savedUser);
         return "User registration successfully.";
     }
     @Override
@@ -75,4 +77,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                  "userEmail");
 
     }
+
 }

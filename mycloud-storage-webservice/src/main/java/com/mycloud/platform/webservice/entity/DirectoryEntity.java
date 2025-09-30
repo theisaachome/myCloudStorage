@@ -9,6 +9,16 @@ public class DirectoryEntity  extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DirectoryEntity parent;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User owner;
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
     private String path;
 
